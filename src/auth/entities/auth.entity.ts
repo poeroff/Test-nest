@@ -27,4 +27,7 @@ export class Auth {
 
     @DeleteDateColumn()
     deletedAt? : Date
+
+    @OneToMany(() => Reservation, reservation  => reservation.user)
+    reservation : Reservation
 }
