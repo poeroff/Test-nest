@@ -1,4 +1,5 @@
-import { Entity , Column , PrimaryGeneratedColumn , CreateDateColumn, UpdateDateColumn , DeleteDateColumn, JoinTable} from 'typeorm';
+import { Entity , Column , PrimaryGeneratedColumn , CreateDateColumn, UpdateDateColumn , DeleteDateColumn, JoinTable, OneToMany} from 'typeorm';
+import { Reservation } from 'src/reservation/entities/reservation.entity';
 
 @Entity()
 export class Auth {

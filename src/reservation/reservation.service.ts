@@ -23,9 +23,11 @@ export class ReservationService {
     if (seat.price > user.Point) {
       throw new NotAcceptableException("잔액이 부족합니다")
     }
+   
     seat.seat_use = true;
     user.Point = user.Point - seat.price
-    const reservation = this.reservationRepository.create({ userId: user.id, postId: seat.post.id, seatId: seat.id })
+    const reservation = this.reservationRepository.create({ userId: user.id, postId: seat.postId, seatId: seat.id })
+    
     await this.reservationRepository.save(reservation)
     await this.seatRepository.save(seat)
     await this.AuthRepository.save(user);
@@ -34,6 +36,7 @@ export class ReservationService {
   async cancel(createReservationDto: CreateReservationDto, id: number) {
     const seat = await this.seatRepository.findOne({ where: createReservationDto })
     const reservation = await this.reservationRepository.findOne({ where: { seatId: seat.id } })
+
     if (reservation === null) {
       throw new NotFoundException("예약된 좌석을 찾을수 없습니다")
     }
@@ -47,7 +50,9 @@ export class ReservationService {
   }
 
   async check(id: number) {
+    
     const reservation = await this.reservationRepository.find({ where: { userId: id } })
+   
     if (reservation.length === 0) {
       throw new NotFoundException("예메한 기록이 없습니다")
     }
