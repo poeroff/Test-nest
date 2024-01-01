@@ -18,7 +18,7 @@ export class Opentime {
     postId : number
 
 
-    @ManyToOne(()=> Post, Post => Post.id, { eager: true })
+    @ManyToOne(()=> Post, Post => Post.opentime, { eager: true })
     post : Post;
 
 }

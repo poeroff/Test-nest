@@ -34,7 +34,7 @@ export class Seat {
     seat_use : boolean
 
   
-    @ManyToOne(()=> Post, Post => Post.id, { eager: true })
+    @ManyToOne(()=> Post, Post => Post.seat)
     post : Post;
 
 

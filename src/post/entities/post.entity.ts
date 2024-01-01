@@ -1,5 +1,6 @@
-import { Entity , PrimaryGeneratedColumn , Column , CreateDateColumn, PrimaryColumn, ManyToOne, BeforeInsert, JoinColumn, JoinTable } from "typeorm"
+import { Entity , PrimaryGeneratedColumn , Column , CreateDateColumn, PrimaryColumn, ManyToOne, BeforeInsert, JoinColumn, JoinTable, OneToMany } from "typeorm"
 import { Auth } from "../../auth/entities/auth.entity"
+import { Seat } from "src/seat/entities/seat.entity"
 
 @Entity()
 export class Post {
@@ -26,6 +27,9 @@ export class Post {
     
     @CreateDateColumn()
     createdAt : Date;
+
+    @OneToMany(() => Seat , (seat) => seat.post)
+    seat : Seat
 
 
 
