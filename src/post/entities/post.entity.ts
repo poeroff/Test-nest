@@ -1,14 +1,12 @@
 import { Entity , PrimaryGeneratedColumn , Column , CreateDateColumn, PrimaryColumn, ManyToOne, BeforeInsert, JoinColumn, JoinTable, OneToMany } from "typeorm"
-import { Auth } from "../../auth/entities/auth.entity"
+import { Reservation } from "src/reservation/entities/reservation.entity"
 import { Seat } from "src/seat/entities/seat.entity"
+import { Opentime } from "src/opentime/entities/opentime.entity"
 
 @Entity()
 export class Post {
     @PrimaryGeneratedColumn()
- 
     id : number
-
-
 
     @Column()
     Name : string
@@ -30,6 +28,16 @@ export class Post {
 
     @OneToMany(() => Seat , (seat) => seat.post)
     seat : Seat
+
+    @OneToMany(() => Opentime , (opentiem) => opentiem.post)
+    opentime : Opentime
+
+    @OneToMany(() => Reservation , (reservation) => reservation.post)
+    @JoinColumn()
+    reservation : Reservation
+
+
+
 
 
 
